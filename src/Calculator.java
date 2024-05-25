@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -54,10 +52,10 @@ public class Calculator {
 
         // İşlem butonları için panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4));
-        JButton addButton = new JButton(new ImageIcon("plus.png"));
-        JButton subtractButton = new JButton(new ImageIcon("minus.png"));
-        JButton multiplyButton = new JButton(new ImageIcon("multiply.png"));
-        JButton divideButton = new JButton(new ImageIcon("divide.png"));
+        JButton addButton = new JButton("+");
+        JButton subtractButton = new JButton("-");
+        JButton multiplyButton = new JButton("x");
+        JButton divideButton = new JButton("/");
 
         // Buton arka plan renkleri
         addButton.setBackground(Color.LIGHT_GRAY);
@@ -65,69 +63,64 @@ public class Calculator {
         multiplyButton.setBackground(Color.LIGHT_GRAY);
         divideButton.setBackground(Color.LIGHT_GRAY);
 
+        //Button Text'lerinin Fontları ve Font Büyüklükleri
+        addButton.setFont(new Font("Arial", Font.BOLD, 40));
+        subtractButton.setFont(new Font("Arial", Font.BOLD, 60));
+        multiplyButton.setFont(new Font("Arial", Font.BOLD, 40));
+        divideButton.setFont(new Font("Arial", Font.BOLD, 40));
+
+        //Panele Butonların Eklenmesi
         buttonPanel.add(addButton);
         buttonPanel.add(subtractButton);
         buttonPanel.add(multiplyButton);
         buttonPanel.add(divideButton);
 
         // Butonların action listener'ları
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    double num1 = Double.parseDouble(number1Field.getText());
-                    double num2 = Double.parseDouble(number2Field.getText());
-                    double result = num1 + num2;
-                    resultField.setText(String.valueOf(result));
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(frame, "Lütfen geçerli sayılar girin.");
-                }
+        addButton.addActionListener(e -> {
+            try {
+                double num1 = Double.parseDouble(number1Field.getText());
+                double num2 = Double.parseDouble(number2Field.getText());
+                double result = num1 + num2;
+                resultField.setText(String.valueOf(result));
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Lütfen geçerli sayılar girin.");
             }
         });
 
-        subtractButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    double num1 = Double.parseDouble(number1Field.getText());
-                    double num2 = Double.parseDouble(number2Field.getText());
-                    double result = num1 - num2;
-                    resultField.setText(String.valueOf(result));
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(frame, "Lütfen geçerli sayılar girin.");
-                }
+        subtractButton.addActionListener(e -> {
+            try {
+                double num1 = Double.parseDouble(number1Field.getText());
+                double num2 = Double.parseDouble(number2Field.getText());
+                double result = num1 - num2;
+                resultField.setText(String.valueOf(result));
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Lütfen geçerli sayılar girin.");
             }
         });
 
-        multiplyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    double num1 = Double.parseDouble(number1Field.getText());
-                    double num2 = Double.parseDouble(number2Field.getText());
-                    double result = num1 * num2;
-                    resultField.setText(String.valueOf(result));
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(frame, "Lütfen geçerli sayılar girin.");
-                }
+        multiplyButton.addActionListener(e -> {
+            try {
+                double num1 = Double.parseDouble(number1Field.getText());
+                double num2 = Double.parseDouble(number2Field.getText());
+                double result = num1 * num2;
+                resultField.setText(String.valueOf(result));
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Lütfen geçerli sayılar girin.");
             }
         });
 
-        divideButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    double num1 = Double.parseDouble(number1Field.getText());
-                    double num2 = Double.parseDouble(number2Field.getText());
-                    if (num2 == 0) {
-                        JOptionPane.showMessageDialog(frame, "Bölme işlemi için ikinci sayı sıfır olamaz.");
-                    } else {
-                        double result = num1 / num2;
-                        resultField.setText(String.valueOf(result));
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(frame, "Lütfen geçerli sayılar girin.");
+        divideButton.addActionListener(e -> {
+            try {
+                double num1 = Double.parseDouble(number1Field.getText());
+                double num2 = Double.parseDouble(number2Field.getText());
+                if (num2 == 0) {
+                    JOptionPane.showMessageDialog(frame, "Bölme işlemi için ikinci sayı sıfır olamaz.");
+                } else {
+                    double result = num1 / num2;
+                    resultField.setText(String.valueOf(result));
                 }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Lütfen geçerli sayılar girin.");
             }
         });
 
